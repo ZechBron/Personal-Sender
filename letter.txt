@@ -1,0 +1,3 @@
+<a rel="nofollow noopener noreferrer" href="https://link/redir.php?email=##email##">
+<img src="cid:image">
+</a>
