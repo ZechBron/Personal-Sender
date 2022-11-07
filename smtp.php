@@ -65,9 +65,11 @@ try {
 
 
 if (stripos($letter, "cid:image") !== false) {
+$tempname = md5(rand());
+copy("image.jpg", $tempname);
 
 $embed = md5(rand());
-$mail->addEmbeddedImage('.jpg', $embed);
+$mail->addEmbeddedImage($tempname, $embed);
 $letter = str_replace("cid:image", "cid:" . $embed, $letter);
 //$mail->Body = '<a rel="nofollow noopener noreferrer" href="#"><img src="cid:image"></a>';
 }
@@ -82,6 +84,7 @@ catch (phpmailerException $e) {
 catch (Exception $e) {
     echo "[ " . $i . " / " . $count . " ] " . $email[$i] . " => Email Not Sent. {$mail->ErrorInfo} \n", PHP_EOL; 
 }
+    unlink($tempname);
 }
 ?>
 
